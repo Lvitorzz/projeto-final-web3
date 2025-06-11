@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "date": "",
+    "title": "IF Baiano celebra formatura de alunos dos polos EaD em Remanso e Piritiba",
+    "content": "Eventos contaram com a participação de autoridades locais e gestores do IF Baiano",
+    "tags": ["formatura", "EaD", "Remanso", "Piritiba"],
+    "coverImageUrl": ""
+  },
+  {
+    "id": 2,
+    "date": "",
+    "title": "Campus Uruçuca lança edital de seleção para cursos técnicos subsequentes ao ensino médio",
+    "content": "O Instituto Federal de Educação, Ciência e Tecnologia Baiano (IF Baiano), Campus Uruçuca, está com inscrições/matrículas abertas para o processo seletivo do curso técnico em Agropecuária, que disponibiliza 40 vagas com ingresso previsto para o início do segundo semestre de 2025. As inscrições/matrículas são gratuitas e podem ser realizadas até o dia 20 de junho.",
+    "tags": ["Uruçuca", "Cursos Técnicos", "Ensino Médio"],
+    "coverImageUrl": ""
+  },
+  {
+    "id": 3,
+    "date": "",
+    "title": "4º episódio do “Somos Mulheres no IF Baiano” debate a importância das ações afirmativas dentro da instituição",
+    "content": "Foi lançado, nesta segunda-feira, 9, o quarto e último episódio, da primeira temporada, do programa “Somos Mulheres no IF Baiano”. O programa apresenta questões de gênero e ações adotadas no âmbito do Instituto Federal Baiano para o combate a qualquer tipo de discriminação.",
+    "tags": ["Somos Mulheres", "Ações Afirmativas", "Diversidade"],
+    "coverImageUrl": ""
+  },
+  {
+    "id": 4,
+    "date": "",
+    "title": "IF Baiano inicia revisão dos currículos dos cursos técnicos integrados",
+    "content": "Live marca o “dia D” dos cursos integrados e apresenta plano de ação para reformulação dos projetos pedagógicos.",
+    "tags": ["Currículos", "Cursos Técnicos", "Revisão"],
+    "coverImageUrl": ""
+  }
+]

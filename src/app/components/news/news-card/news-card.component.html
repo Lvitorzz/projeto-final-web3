@@ -1,0 +1,18 @@
+<div class="card mb-3 news-card">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img [src]="newsItem.coverImageUrl" class="img-fluid rounded-start" alt="Notícia">
+    </div>
+    <div class="col-md-8 d-flex flex-column justify-content-center p-3">
+      <div class="mb-2 text-muted small">
+        <i class="bi bi-calendar-event"></i> {{ newsItem.date }}
+      </div>
+      <h5 class="card-title fw-bold">
+        {{ newsItem.title }}
+      </h5>
+      <p class="card-text">
+        {{ newsItem.content }}
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="container my-4">
+  <div *ngFor="let news of newsList" class="mb-3">
+    <app-news-card [newsItem]="news"></app-news-card>
+
+    <div *ngIf="managementMode" class="mt-2 text-end">
+      <button class="btn btn-sm btn-primary me-2" (click)="edit.emit(news)">
+        Editar
+      </button>
+      <button class="btn btn-sm btn-danger" (click)="delete.emit(news.id!)">
+        Apagar
+      </button>
+    </div>
+  </div>
+</div>

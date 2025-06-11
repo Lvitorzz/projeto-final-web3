@@ -1,0 +1,7 @@
+<app-header></app-header>
+<app-news-list
+  [newsList]="newsList"
+  [managementMode]="true"
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)">
+</app-news-list>

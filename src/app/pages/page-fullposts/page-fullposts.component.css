@@ -1,0 +1,34 @@
+:host {
+  display: block;
+}
+
+/* Wrapper full-width + centraliza o inner */
+.page-fullposts {
+  background: #fafafa;
+  padding: 2rem 0;
+
+  .page-fullposts-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+  }
+}
+
+/* Sidebar fixa */
+.page-fullposts-sidebar {
+  flex: 0 0 240px;
+}
+
+/* Conteúdo principal */
+.page-fullposts-content {
+  flex: 1;
+}
+
+.page-fullposts-title {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #12621c;
+  margin-bottom: 1rem;
+}

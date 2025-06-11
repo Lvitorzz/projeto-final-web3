@@ -1,0 +1,35 @@
+:host {
+  display: inline-block;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.search-input {
+  border: none;
+  padding: 0.5rem 0.75rem;
+  width: 180px;
+  font-size: 0.9rem;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-button {
+  border: none;
+  background: #005024;
+  padding: 0 0.75rem;
+  cursor: pointer;
+}
+
+.search-button i {
+  color: #fff;
+  font-size: 1rem;
+}

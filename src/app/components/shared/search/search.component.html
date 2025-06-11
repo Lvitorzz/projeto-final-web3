@@ -1,0 +1,12 @@
+<form class="search" (submit)="onSearch(searchInput.value); $event.preventDefault()">
+  <input
+    #searchInput
+    type="text"
+    class="search-input"
+    placeholder="Digite sua pesquisa"
+    aria-label="Pesquisa"
+  />
+  <button type="submit" class="search-button" aria-label="Buscar">
+    <i class="fas fa-search"></i>
+  </button>
+</form>
