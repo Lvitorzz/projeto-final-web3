@@ -1,0 +1,38 @@
+<div class="container my-5">
+  <div *ngIf="news; else notFound" class="noticia-detalhe card shadow-sm p-4 border-0">
+    <h1 class="fw-bold text-success display-5 mb-3 noticia-titulo">
+      {{ news.title }}
+    </h1>
+    
+    <div *ngIf="news.coverImageUrl" class="text-center mb-4">
+      <img
+        [src]="news.coverImageUrl"
+        alt="Imagem da notícia"
+        class="img-fluid rounded"
+        style="max-height: 400px; object-fit: cover;"
+      />
+    </div>
+    
+    <div class="d-flex align-items-center text-muted mb-2 noticia-meta">
+      <i class="bi bi-calendar-event me-2"></i>
+      <span>
+        <b>Publicado em</b>
+        {{ news.date | date:'dd/MM/yyyy HH:mm' }}
+      </span>
+    </div>
+
+    <hr class="mb-4">
+
+    <div class="noticia-conteudo" [innerHTML]="news.content"></div>
+
+    <div *ngIf="news.tags?.length" class="mt-3">
+      <span *ngFor="let tag of news.tags" class="badge bg-success me-1">{{ tag }}</span>
+    </div>
+  </div>
+
+  <ng-template #notFound>
+    <div class="alert alert-warning mt-5">
+      Notícia não encontrada ou erro ao carregar.
+    </div>
+  </ng-template>
+</div>

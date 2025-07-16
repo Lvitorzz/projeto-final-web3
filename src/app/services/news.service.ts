@@ -3,16 +3,29 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { News } from '../models/news';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class NewsService {
-
-  private jsonUrl = 'assets/news.json';
+  private apiUrl = 'http://localhost:3000/news';
 
   constructor(private http: HttpClient) {}
 
-  getNews(): Observable<News[]> {
-    return this.http.get<News[]>(this.jsonUrl);
+  createNews(news: News): Observable<{ id: number }> {
+    return this.http.post<{ id: number }>(this.apiUrl, news);
+  }
+
+  getAllNews(): Observable<News[]> {
+    return this.http.get<News[]>(this.apiUrl);
+  }
+
+  getNewsById(id: number): Observable<News> {
+    return this.http.get<News>(`${this.apiUrl}/${id}`);
+  }
+
+  updateNews(id: number, news: News): Observable<{ success: boolean }> {
+    return this.http.put<{ success: boolean }>(`${this.apiUrl}/${id}`, news);
+  }
+
+  deleteNews(id: number): Observable<{ success: boolean }> {
+    return this.http.delete<{ success: boolean }>(`${this.apiUrl}/${id}`);
   }
 }

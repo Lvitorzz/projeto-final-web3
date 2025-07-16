@@ -1,0 +1,54 @@
+.noticia-detalhe {
+  background: #fff;
+  border-radius: 10px;
+  max-width: 100%;
+  overflow-x: auto;
+  /* Opcional: sombra e padding já estão no card, pode remover se não quiser */
+}
+
+.noticia-titulo {
+  font-size: 2.6rem;
+  line-height: 1.1;
+  color: #23884e;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.noticia-conteudo {
+  font-size: 1.13rem;
+  color: #333;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: pre-line;
+  line-height: 1.7;
+  max-width: 100%;
+}
+
+.badge.bg-success {
+  background-color: #23884e !important;
+  font-size: 1em;
+  padding: 0.45em 1em;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  display: inline-block;
+}
+
+img.img-fluid {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 991px) {
+  .noticia-titulo {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 767px) {
+  .noticia-titulo {
+    font-size: 1.3rem;
+  }
+}

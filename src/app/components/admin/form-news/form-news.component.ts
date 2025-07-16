@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { News } from '../../../models/news';
+import { NewsService } from '../../../services/news.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-news',
@@ -10,66 +12,77 @@ import { News } from '../../../models/news';
   templateUrl: './form-news.component.html',
   styleUrls: ['./form-news.component.scss'],
 })
-export class FormNewsComponent implements OnInit {
-  form!: FormGroup;
-  coverPreviewUrl: string | ArrayBuffer | null = null;
-  selectedFile: File | null = null;
+export class NewsFormComponent implements OnInit {
+  form: FormGroup;
+  editing = false;
+  newsId: number | null = null;
 
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {
+  constructor(
+    private fb: FormBuilder,
+    private newsService: NewsService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.form = this.fb.group({
-      title: ['', [Validators.required]],
-      content: ['', [Validators.required]],
-      tags: ['', [Validators.required]],
-      date: ['', [Validators.required]],
+      title: ['', Validators.required],
+      content: ['', Validators.required],
+      tags: ['', Validators.required],
+      coverImageUrl: ['', Validators.required]
     });
   }
 
-  get title() {
-    return this.form.get('title')!;
-  }
-  get content() {
-    return this.form.get('content')!;
-  }
-  get tags() {
-    return this.form.get('tags')!;
-  }
-  get date() {
-    return this.form.get('date')!;
+  get title() { return this.form.get('title'); }
+  get content() { return this.form.get('content'); }
+  get tags() { return this.form.get('tags'); }
+  get coverImageUrl() { return this.form.get('coverImageUrl'); }
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const idParam = params.get('id');
+      if (idParam) {
+        this.editing = true;
+        this.newsId = +idParam;
+        this.loadNews(this.newsId);
+      }
+    });
   }
 
-  onFileChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (!input.files || input.files.length === 0) return;
-    const file = input.files[0];
-    this.selectedFile = file;
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.coverPreviewUrl = reader.result;
-    };
-    reader.readAsDataURL(file);
+  loadNews(id: number) {
+    this.newsService.getNewsById(id).subscribe(news => {
+      this.form.patchValue({
+        title: news.title,
+        content: news.content,
+        tags: news.tags.join(', '),
+        coverImageUrl: news.coverImageUrl
+      });
+    });
   }
 
   onSubmit(): void {
-    if (this.form.invalid || !this.selectedFile) {
-      this.form.markAllAsTouched();
-      return;
-    }
+    if (this.form.invalid) return;
 
-    const tagsArray = (this.tags.value as string)
-      .split(',')
-      .map(t => t.trim())
-      .filter(t => t);
+    const tagsArray = this.form.value.tags.split(',')
+      .map((t: string) => t.trim())
+      .filter((t: string) => !!t);
 
     const news: News = {
-      title: this.title.value,
-      content: this.content.value,
+      title: this.form.value.title,
+      content: this.form.value.content,
       tags: tagsArray,
-      date: new Date(this.date.value),
-      coverImageUrl: this.coverPreviewUrl as string
+      coverImageUrl: this.form.value.coverImageUrl,
+      date: new Date()
     };
 
-    console.log(news, this.selectedFile);
+    if (this.editing && this.newsId) {
+      this.newsService.updateNews(this.newsId, news).subscribe({
+        next: () => this.router.navigate(['/news']),
+        error: () => alert('Erro ao editar notícia!')
+      });
+    } else {
+      this.newsService.createNews(news).subscribe({
+        next: () => this.router.navigate(['/news']),
+        error: () => alert('Erro ao cadastrar notícia!')
+      });
+    }
   }
 }

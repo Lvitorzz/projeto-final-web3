@@ -1,1 +1,15 @@
-<p>more-news works!</p>
+<div class="more-news">
+  <h6 class="text-uppercase fw-bold mb-3">Outras Notícias</h6>
+
+  <div *ngFor="let news of newsList" class="mb-4 d-flex flex-column">
+    <img [src]="news.coverImageUrl" alt="Imagem da notícia" class="img-fluid mb-2 rounded">
+    
+    <small class="text-muted mb-1">
+      {{ news.date | date: 'dd/MM/yyyy' }} às {{ news.date | date: 'HH:mm' }}
+    </small>
+
+    <a (click)="goToNews(news.id!)" class="text-success fw-semibold text-decoration-none" role="button">
+      {{ news.title }}
+    </a>
+  </div>
+</div>
